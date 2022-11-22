@@ -19,6 +19,7 @@ NEO_GRB            + NEO_KHZ800);
 
 
 char* Text[]= {"CARL-DAVID HYPPOLITE :)"};
+char* getRequete ="";
 const uint16_t colors[] = {
   matrix.Color(255, 51, 153)};
 int brightness = 80;
@@ -42,8 +43,8 @@ int mode = 0;
 AsyncWebServer monServeur(80);
 
 // réseau Wifi
-const char* ssid = "cm-invites";
-const char* password = "sansfil3800";
+const char* ssid = "CDH";
+const char* password = "bonjour123";
 /*----------------- FIN VARAIBLES CONNEXION WI-FI -----------------*/
 
 void setup() {
@@ -80,6 +81,27 @@ void setup() {
   // écoute requète fichier style.css (reçue par le lien de style.css dans html) 
   monServeur.on("/style.css", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(SPIFFS, "/style.css", "text/css");
+  });
+
+  // get
+  monServeur.on("/get", HTTP_GET, [](AsyncWebServerRequest * request) {
+    // getRequete = request->params();
+    int paramsNr = request->params();
+    Serial.println(paramsNr);
+ 
+    for(int i=0;i<paramsNr;i++){
+ 
+        AsyncWebParameter* p = request->getParam(i);
+        Serial.print("Param name: ");
+        Serial.println(p->name());
+        Serial.print("Param value: ");
+        Serial.println(p->value());
+        Serial.println("------");
+    }
+
+    Serial.println("Requête: ");
+    Serial.println(getRequete);
+    request->send(SPIFFS, "/index.html", String(), false);
   });
 }
 
