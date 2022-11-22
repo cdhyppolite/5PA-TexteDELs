@@ -42,8 +42,8 @@ int mode = 0;
 AsyncWebServer monServeur(80);
 
 // réseau Wifi
-const char* ssid = "CDH";
-const char* password = "carldavid_5pa";
+const char* ssid = "cm-invites";
+const char* password = "sansfil3800";
 /*----------------- FIN VARAIBLES CONNEXION WI-FI -----------------*/
 
 void setup() {
