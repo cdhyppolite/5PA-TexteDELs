@@ -1,0 +1,170 @@
+html {
+  font-family: 'RocknRoll One', sans-serif !important;
+  display: inline-block;
+  margin: 0px auto;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+body {
+  background-color: darkslategrey;
+}
+
+h1 {
+  color: white;
+  padding: 2vh;
+}
+
+h2 {
+  color: white;
+}
+
+#conteneur {
+  background-color: #00658a;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: .4s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#conteneur a {
+  width: 20%;
+  text-decoration: none;
+}
+
+#conteneur a.fix {
+  color: Chocolate;
+  background-color: Maroon;
+}
+
+#conteneur a.fix:hover {
+  background-color: peru;
+}
+
+#conteneur a.move {
+  color: crimson;
+  background-color: pink;
+}
+
+#conteneur a.move:hover {
+  background-color: coral;
+}
+
+#conteneur a.tricolore {
+  color: blue;
+  background-color: white;
+}
+
+#conteneur a.tricolore:hover {
+  background-color: crimson;
+}
+
+#conteneur a.stop {
+  color: black;
+  background-color: lightgray;
+}
+
+#conteneur a.stop:hover {
+  background-color: gray;
+}
+
+#conteneur a.rainbow {
+  animation: text-arc-en-ciel 4.5s infinite, bg-arc-en-ciel 4.5s reverse infinite;
+}
+
+#conteneur a.rainbow:hover {
+  background-color: black;
+  animation: text-arc-en-ciel 3s infinite;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+@keyframes text-arc-en-ciel {
+  100%,
+  0% {
+    color: red;
+  }
+  8% {
+    color: #ff7f00;
+  }
+  16% {
+    color: yellow;
+  }
+  25% {
+    color: chartreuse;
+  }
+  33% {
+    color: lime;
+  }
+  41% {
+    color: springgreen;
+  }
+  50% {
+    color: cyan;
+  }
+  58% {
+    color: #007fff;
+  }
+  66% {
+    color: blue;
+  }
+  75% {
+    color: #7f00ff;
+  }
+  83% {
+    color: magenta;
+  }
+  91% {
+    color: #ff007f;
+  }
+}
+
+@keyframes bg-arc-en-ciel {
+  100%,
+  0% {
+    background-color: red;
+  }
+  8% {
+    background-color: #ff7f00;
+  }
+  16% {
+    background-color: yellow;
+  }
+  25% {
+    background-color: chartreuse;
+  }
+  33% {
+    background-color: lime;
+  }
+  41% {
+    background-color: springgreen;
+  }
+  50% {
+    background-color: cyan;
+  }
+  58% {
+    background-color: #007fff;
+  }
+  66% {
+    background-color: blue;
+  }
+  75% {
+    background-color: #7f00ff;
+  }
+  83% {
+    background-color: magenta;
+  }
+  91% {
+    background-color: #ff007f;
+  }
+}
+/*# sourceMappingURL=style.css.map */
