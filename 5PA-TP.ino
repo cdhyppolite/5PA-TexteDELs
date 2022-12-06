@@ -6,15 +6,13 @@
 #define PIN 22
 char* texteLED = "Carl-David";
 
-Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(25, 10, DATA_PIN,
-NEO_MATRIX_BOTTOM    + NEO_MATRIX_LEFT +
-NEO_MATRIX_ROWS + NEO_MATRIX_PROGRESSIVE + NEO_MATRIX_ZIGZAG,
-NEO_GRB            + NEO_KHZ800);
+Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(25, 10, PIN,
+ NEO_MATRIX_BOTTOM    + NEO_MATRIX_LEFT +
+ NEO_MATRIX_ROWS + NEO_MATRIX_PROGRESSIVE + NEO_MATRIX_ZIGZAG,
+ NEO_GRB            + NEO_KHZ800);
 
 const uint16_t colors[] = {
-  matrix.Color(204, 0, 204), matrix.Color(204, 204, 0), matrix.Color(0, 255, 255),
-  matrix.Color(255, 10, 127), matrix.Color(127, 0, 255), matrix.Color(0, 255, 0),
-  matrix.Color(255, 99, 255)
+  matrix.Color(138, 44, 226)
 };
 /*----------------- FIN VARAIBLES LEDS MATRIX -----------------*/
 
@@ -35,7 +33,7 @@ AsyncWebServer monServeur(80);
 
 // Autres
 int effet = 5; //Éteindre par défault
-const int temps = 10;
+const int temps = 40;
 
 void setup() {
   // Matrix
@@ -73,35 +71,47 @@ void setup() {
     request->send(SPIFFS, "/style.css", "text/css");
   });
 
-  /** ------------------------  LES EFFETS ----------------------------*/
+  /** ------------------------  LES COURS ----------------------------*/
 
-  // écoute requète effet1 (envoyé par bouton html)
-  monServeur.on("/effet1", HTTP_GET, [](AsyncWebServerRequest * request) {
-    printEffet("BonJour");
+// Session 1
+  monServeur.on("/1J1", HTTP_GET, [](AsyncWebServerRequest * request) {
+    changerText("Animation et interactivite en jeu");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
-  // écoute requète effet2 (envoyé par bouton html)
-  monServeur.on("/effet2", HTTP_GET, [](AsyncWebServerRequest * request) {
-    printEffet("mario");
+  monServeur.on("/1M1", HTTP_GET, [](AsyncWebServerRequest * request) {
+    changerText("Creation video");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
-  // écoute requète effet3 (envoyé par bouton html)
-  monServeur.on("/effet3", HTTP_GET, [](AsyncWebServerRequest * request) {
-    printEffet("Luigi");
+  monServeur.on("/1M2", HTTP_GET, [](AsyncWebServerRequest * request) {
+    changerText("Conception graphique et imagerie matricielle");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
-  // écoute requète effet4 (envoyé par bouton html)
-  monServeur.on("/effet4", HTTP_GET, [](AsyncWebServerRequest * request) {
-    printEffet("OMG");
+  monServeur.on("/1W1", HTTP_GET, [](AsyncWebServerRequest * request) {
+    changerText("Mise en page Web");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
-  // écoute requète effet5 (envoyé par bouton html)
-  monServeur.on("/effet5", HTTP_GET, [](AsyncWebServerRequest * request) {
-    printEffet("QwerTY");
+// Session 2
+  monServeur.on("/2J2", HTTP_GET, [](AsyncWebServerRequest * request) {
+    changerText("Creation de jeu 2D");
+    request->send(SPIFFS, "/index.html", String(), false);
+  });
+
+  monServeur.on("/2M3", HTTP_GET, [](AsyncWebServerRequest * request) {
+    changerText("Effets speciaux et animation");
+    request->send(SPIFFS, "/index.html", String(), false);
+  });
+
+  monServeur.on("/2M4", HTTP_GET, [](AsyncWebServerRequest * request) {
+    changerText("Conception graphique et imagerie vectorielle");
+    request->send(SPIFFS, "/index.html", String(), false);
+  });
+
+  monServeur.on("/2W2", HTTP_GET, [](AsyncWebServerRequest * request) {
+    changerText("Animation et interactivite Web");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
@@ -124,9 +134,9 @@ void loop() {
     matrix.setTextColor(colors[pass]);
   }
   matrix.show();
-  delay(33);
+  delay(temps);
 }
-void printEffet(char* newText) {
+void changerText(char* newText) {
   texteLED = newText;
   Serial.println(texteLED);
 }
