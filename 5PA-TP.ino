@@ -1,39 +1,50 @@
-//librairies
+/*----------------- VARAIBLES POUR LEDS MATRIX -----------------*/
+#include <Adafruit_GFX.h>
+#include <Adafruit_NeoMatrix.h>
+#include <Adafruit_NeoPixel.h>
+
+#define PIN 22
+char* texteLED = "Carl-David";
+
+Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(25, 10, DATA_PIN,
+NEO_MATRIX_BOTTOM    + NEO_MATRIX_LEFT +
+NEO_MATRIX_ROWS + NEO_MATRIX_PROGRESSIVE + NEO_MATRIX_ZIGZAG,
+NEO_GRB            + NEO_KHZ800);
+
+const uint16_t colors[] = {
+  matrix.Color(204, 0, 204), matrix.Color(204, 204, 0), matrix.Color(0, 255, 255),
+  matrix.Color(255, 10, 127), matrix.Color(127, 0, 255), matrix.Color(0, 255, 0),
+  matrix.Color(255, 99, 255)
+};
+/*----------------- FIN VARAIBLES LEDS MATRIX -----------------*/
+
+/*----------------- VARAIBLES POUR CONNEXION WI-FI -----------------*/
 #include "WiFi.h"
 #include <ESPAsyncWebServer.h>
 #include <AsyncTCP.h> //marche sans
 #include "SPIFFS.h"
-#include <FastLED.h>
 
 // réseau Wifi
 const char* ssid = "reseau2";
 const char* password = "123456789";
-/**********************/
-//const char* ssid = "cm-invites";
-//const char* password = "sansfil3800";
 
-//breadboard
-const int PIN_DATA = 27;
+// création instance d'un serveur asynchrone sur le port 80
+AsyncWebServer monServeur(80);
+
+/*----------------- FIN VARAIBLES CONNEXION WI-FI -----------------*/
 
 // Autres
 int effet = 5; //Éteindre par défault
 const int temps = 10;
 
-// Fast Leds
-const int nbLeds = 25;
-CRGB myLights[nbLeds];
-int brightness = 50;
-uint8_t hue = 0;
-
-// création instance d'un serveur asynchrone sur le port 80
-AsyncWebServer monServeur(80);
-
 void setup() {
+  // Matrix
+  matrix.begin();
+  matrix.setTextWrap(false);
+  matrix.setBrightness(40);
+  matrix.setTextColor(colors[0]);
 
-  //config. pin en sortie
-  FastLED.addLeds<NEOPIXEL, PIN_DATA>(myLights, nbLeds);
-  FastLED.setBrightness(brightness);
-  FastLED.clear(false);
+  // Wifi
   Serial.begin(115200);
 
   // si SPIFFS ne démarre pas, alerter
@@ -66,79 +77,56 @@ void setup() {
 
   // écoute requète effet1 (envoyé par bouton html)
   monServeur.on("/effet1", HTTP_GET, [](AsyncWebServerRequest * request) {
-    effet = 1;
+    printEffet("BonJour");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   // écoute requète effet2 (envoyé par bouton html)
   monServeur.on("/effet2", HTTP_GET, [](AsyncWebServerRequest * request) {
-    effet = 2;
+    printEffet("mario");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   // écoute requète effet3 (envoyé par bouton html)
   monServeur.on("/effet3", HTTP_GET, [](AsyncWebServerRequest * request) {
-    effet = 3;
+    printEffet("Luigi");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   // écoute requète effet4 (envoyé par bouton html)
   monServeur.on("/effet4", HTTP_GET, [](AsyncWebServerRequest * request) {
-    effet = 4;
+    printEffet("OMG");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   // écoute requète effet5 (envoyé par bouton html)
   monServeur.on("/effet5", HTTP_GET, [](AsyncWebServerRequest * request) {
-    effet = 5;
+    printEffet("QwerTY");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   // demarrer serveur
   monServeur.begin();
 }
+
+int x = matrix.width();
+int pass = 0;
+
 void loop() {
-  FastLED.clear(effet==2);
+  matrix.fillScreen(0);    //Turn off all the LEDs
+  matrix.setCursor(x, 0);
+  matrix.print(F(texteLED));
 
-  /*switch (effet) {
-    case 1 :
-      effet1();
-      break;
-    case 2 :
-      effet2();
-      break;
-    case 3 :
-      effet3();
-      break;
-    case 4 :
-      effet4();
-      break;
-    case 5 :
-      effet5();
-      break;
-  }*/
+  if( --x < -110 ) {
+    x = matrix.width();
 
+    if(++pass >= 8) pass = 0;
+    matrix.setTextColor(colors[pass]);
+  }
+  matrix.show();
+  delay(33);
 }
-
-// Couleur Fix
-void effet1() {
-
-}
-// Moving dots
-void effet2() {
-
-}
-//Tricolore
-void effet3() {
-
-}
-
-// ARC-EN-CIEL
-void effet4() {
-
-}
-
-// Éteindre
-void effet5() {
-
+void printEffet(char* newText) {
+  texteLED = newText;
+  Serial.println(texteLED);
 }
