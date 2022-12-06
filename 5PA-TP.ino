@@ -108,6 +108,8 @@ void setup() {
     Serial.println(getRequete);
     request->send(SPIFFS, "/index.html", String(), false);
   });
+// demarrer serveur
+  monServeur.begin();
 }
 
 int y = matrix.height();
