@@ -15,7 +15,7 @@ html {
 }
 
 body {
-    background-color: darkslategrey;
+    background-color: black;
 }
 
 h1 {
@@ -33,4 +33,19 @@ p {
 
 fieldset {
     background-color: lightgray;
+}
+
+.listeCours {
+    margin: 0 auto;
+    max-width: 50%;
+    background-color: gray;
+}
+
+.session {
+    display: flex;
+    justify-content: space-around;
+    a {
+        background-color: white;
+        text-decoration: none;
+    }
 }
