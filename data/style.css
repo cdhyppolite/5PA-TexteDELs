@@ -53,4 +53,7 @@ fieldset {
   justify-content: center;
   align-items: center;
   color: orange;
+}
+.session a div {
+  font-size: 230%;
 }/*# sourceMappingURL=style.css.map */

@@ -70,12 +70,25 @@ void setup() {
   // écoute requète page web
   monServeur.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(SPIFFS, "/index.html", String(), false);
+    request->send(SPIFFS, "/logo.png", "image/png");
   });
 
   // écoute requète fichier style.css (reçue par le lien de style.css dans html)
   monServeur.on("/style.css", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(SPIFFS, "/style.css", "text/css");
   });
+  //Logo
+   monServeur.on("/logo.png", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(SPIFFS, "/logo.png", "image/png");
+  });
+  // Ajout des police de DELs
+  monServeur.on("/AdvancedLEDBoard-7.woff", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(SPIFFS, "/AdvancedLEDBoard-7.woff", "text/css");
+  });
+  monServeur.on("/AdvancedLEDBoard-7.woff2", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(SPIFFS, "/AdvancedLEDBoard-7.woff2", "text/css");
+  });
+  
 
   /** ------------------------  LES COURS ----------------------------*/
 
@@ -215,6 +228,22 @@ void setup() {
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
+  // AUTRES
+  monServeur.on("/CDH", HTTP_GET, [](AsyncWebServerRequest * request) {
+    changerText("Realise par: Carl-David Hyppolite");
+    request->send(SPIFFS, "/index.html", String(), false);
+  });
+
+  monServeur.on("/139", HTTP_GET, [](AsyncWebServerRequest * request) {
+    changerText("139 Pie-IX");
+    request->send(SPIFFS, "/index.html", String(), false);
+  });
+
+  monServeur.on("/185", HTTP_GET, [](AsyncWebServerRequest * request) {
+    changerText("185 Sherbrooke");
+    request->send(SPIFFS, "/index.html", String(), false);
+  });
+
   // demarrer serveur
   monServeur.begin();
 }
@@ -228,7 +257,7 @@ void loop() {
   matrix.print(F(texteLED)); //Affiche le texte
 
   //Défiler le texte
-  if( --x < -110 ) {
+  if( --x < -300 ) {
     x = matrix.width();
 
     if(++pass >= 8) pass = 0;
@@ -241,6 +270,8 @@ void loop() {
 //Remplace la valeur du text affiché par une autre
 void changerText(char* newText) {
   texteLED = newText;
+  // int length = sizeof(texteLED)/sizeof(char)
   Serial.println(texteLED); //Affiche la valeur dans la console
+  // Serial.println(length);
 }
 // fovayis610@bitvoo.com
