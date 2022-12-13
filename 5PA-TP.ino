@@ -256,8 +256,8 @@ void loop() {
   matrix.setCursor(x, 0);
   matrix.print(F(texteLED)); //Affiche le texte
 
-  //Défiler le texte
-  if( --x < -300 ) {
+  //Défiler le texte (selon le nombre de lettre dans le mot)
+  if( --x < -(5.8 * strlen(texteLED)) ) {
     x = matrix.width();
 
     if(++pass >= 8) pass = 0;
@@ -270,8 +270,7 @@ void loop() {
 //Remplace la valeur du text affiché par une autre
 void changerText(char* newText) {
   texteLED = newText;
-  // int length = sizeof(texteLED)/sizeof(char)
-  Serial.println(texteLED); //Affiche la valeur dans la console
-  // Serial.println(length);
+  Serial.println(texteLED);
+  Serial.println(strlen(texteLED));
 }
 // fovayis610@bitvoo.com
