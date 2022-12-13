@@ -219,10 +219,11 @@ int x = matrix.width();
 int pass = 0;
 
 void loop() {
-  matrix.fillScreen(0);    //Turn off all the LEDs
+  matrix.fillScreen(0);    //Éteindre toutes les LEDs
   matrix.setCursor(x, 0);
-  matrix.print(F(texteLED));
+  matrix.print(F(texteLED)); //Affiche le texte
 
+  //Défiler le texte
   if( --x < -110 ) {
     x = matrix.width();
 
@@ -232,7 +233,10 @@ void loop() {
   matrix.show();
   delay(temps);
 }
+
+//Remplace la valeur du text affiché par une autre
 void changerText(char* newText) {
   texteLED = newText;
-  Serial.println(texteLED);
+  Serial.println(texteLED); //Affiche la valeur dans la console
 }
+// fovayis610@bitvoo.com
