@@ -1,15 +1,19 @@
+//Affiche.ino
+
 /*----------------- VARAIBLES POUR LEDS MATRIX -----------------*/
 #include <Adafruit_GFX.h>
 #include <Adafruit_NeoMatrix.h>
 #include <Adafruit_NeoPixel.h>
 
 #define PIN 22
-char* texteLED = "TP 5PA par: Carl-David Hyppolite";
+char* texteLED = "Bienvenu!   Joyeuse Fetes!   Bonne vacances!";
 
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(25, 10, PIN,
  NEO_MATRIX_BOTTOM    + NEO_MATRIX_LEFT +
  NEO_MATRIX_ROWS + NEO_MATRIX_PROGRESSIVE + NEO_MATRIX_ZIGZAG,
  NEO_GRB            + NEO_KHZ800);
+
+// Tableau avec la liste des couleurs
 
 const uint16_t colors[] = {
   matrix.Color(204, 0, 204), matrix.Color(204, 204, 0), matrix.Color(0, 255, 255),
@@ -119,12 +123,12 @@ void setup() {
 
 // Session 3
   monServeur.on("/3C1", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Design d’interactivité");
+    changerText("Design d’interactivite");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   monServeur.on("/3J3", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Création de jeu 3D");
+    changerText("Creation de jeu 3D");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
@@ -134,18 +138,18 @@ void setup() {
   });
 
   monServeur.on("/3W3", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Création de sites Web dynamiques");
+    changerText("Creation de sites Web dynamiques");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
 // Session 4
   monServeur.on("/4C2", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Gestion de projets multimédias");
+    changerText("Gestion de projets multimedias");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   monServeur.on("/4J4", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Création de jeu en équipe");
+    changerText("Creation de jeu en equipe");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
@@ -155,48 +159,48 @@ void setup() {
   });
 
   monServeur.on("/4PA", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Interfaces Web réactives et animées");
+    changerText("Interfaces Web reactives et animees");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   monServeur.on("/4W4", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Conception d’interfaces et développement Web");
+    changerText("Conception d’interfaces et developpement Web");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
 // Session 5
   monServeur.on("/5E1", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Méthodes de recherche et préparation au marché du travail");
+    changerText("Methodes de recherche et preparation au marche du travail");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   monServeur.on("/5JA", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Expérimentation en jeu – volet programmation");
+    changerText("Experimentation en jeu – volet programmation");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   monServeur.on("/5JB", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Expérimentation en jeu – volet creation");
+    changerText("Experimentation en jeu – volet creation");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   monServeur.on("/5MB", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Technologies émergentes et avancées – volet Création");
+    changerText("Technologies emergentes et avancees – volet Creation");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   monServeur.on("/5PA", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Technologies émergentes et avancées – volet programmation");
+    changerText("Technologies emergentes et avancees – volet programmation");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   monServeur.on("/5W5", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Projet Web en équipe");
+    changerText("Projet Web en equipe");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
   monServeur.on("/5N1", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Communication et dynamique d’une équipe de travail");
+    changerText("Communication et dynamique d’une equipe de travail");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 
@@ -207,7 +211,7 @@ void setup() {
   });
 
   monServeur.on("/6N3", HTTP_GET, [](AsyncWebServerRequest * request) {
-    changerText("Projet de fin d’études");
+    changerText("Projet de fin d’etudes");
     request->send(SPIFFS, "/index.html", String(), false);
   });
 

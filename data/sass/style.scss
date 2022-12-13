@@ -5,30 +5,37 @@
         background-color: $couleur3;
     }
 }
+// Police en LED
+@font-face {
+    font-family: 'LED';
+    src: url('AdvancedLEDBoard-7.woff2') format('woff2'),
+        url('AdvancedLEDBoard-7.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+$CouleurFond1 : gray;
 
 html {
-    font-family: 'RocknRoll One', sans-serif !important;
+    // font-family: 'RocknRoll One', sans-serif !important;
+    font-size: 'LED';
     display: inline-block;
     margin: 0px auto;
     text-align: center;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+    color: white;
 }
 
 body {
-    background-color: black;
+    background-color:darkblue;
 }
 
 h1 {
-    color: white;
     padding: 2vh;
 }
-
-h2 {
-    color: white;
-}
-
-p {
-    font-size: 1.5rem;
+.led,.session a {
+    font-family: 'LED';
+    font-weight: 100;
 }
 
 fieldset {
@@ -37,15 +44,26 @@ fieldset {
 
 .listeCours {
     margin: 0 auto;
-    max-width: 50%;
-    background-color: gray;
+    max-width: 85%;
+    background-color: $CouleurFond1;
 }
 
 .session {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     a {
-        background-color: white;
+    background: radial-gradient(white, $CouleurFond1);
         text-decoration: none;
+        border-radius: 50%;
+        overflow: hidden;
+        // Taille
+        width: 5em;
+        height: 5em;
+        // Flex
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: orange;
     }
 }
