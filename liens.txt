@@ -1,2 +1,0 @@
-https://randomnerdtutorials.com/esp32-esp8266-input-data-html-form/
-https://howtomechatronics.com/tutorials/arduino/8x8-led-matrix-max7219-tutorial-scrolling-text-android-control-via-bluetooth/
